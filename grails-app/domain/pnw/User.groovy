@@ -6,7 +6,7 @@ class User {
     String email
 
     static constraints = {
-      name(nullable:false,blank:false)
-      email(blank:false,email:true)
+      username(nullable:false,blank:false,unique:true)
+      email(blank:false,email:true,unique:true)
     }
 }
