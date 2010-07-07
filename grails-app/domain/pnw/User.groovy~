@@ -1,0 +1,7 @@
+package pnw
+
+class User {
+
+    static constraints = {
+    }
+}
