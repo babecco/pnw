@@ -7,6 +7,6 @@ class PessoaFisica extends User {
 
     static constraints = {
 		name(blank:false)
-		cpf(blank:false)
+		cpf(blank:false,unique:true)
     }
 }

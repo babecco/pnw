@@ -4,27 +4,19 @@ class CrudService {
 
     static transactional = true
 
-	//returns [boolean status, User object, String message]
-	def createUser(String name, String email) {
-		def user = new User(username:name,email:email)
-		def returnTuple = []
-		if(!user.validate()) {
-			returnTuple << false
-			returnTuple << user
-			returnTuple << "changeme" 
-			log.info "deu merda"
-		} else {
-			if(user.save()) {
-				returnTuple << true
-				returnTuple << user
-			} else {
-				log.error "problema no banco!"
-			}
+    def createPessoaJuridica(String username, String email, String cnpj, String razaoSocial) {
+		def user = new PessoaJuridica(username:username,email:email,cnpj:cnpj,razaoSocial:razaoSocial)
+		if(!user.save()) {
+			log.info "Validation error - ${user.errors}"
 		}
-		return returnTuple
+			return user
 	}
 
-    def createPessoaJuridica() {
-
-    }
+	def createPessoaFisica(String username, String email, String cpf, String name) {
+		def user = new PessoaFisica(username:username,email:email,cpf:cpf,name:name)
+		if(!user.save()) {
+			log.info "Validation error - ${user.errors}"
+		}
+			return user
+	}
 }

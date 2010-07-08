@@ -6,7 +6,7 @@ class PessoaJuridica extends User{
 	String razaoSocial
 
     static constraints = {
-		cnpj(blank:false)
+		cnpj(blank:false,unique:true)
 		razaoSocial(blank:false)
     }
 }
