@@ -2,7 +2,7 @@ package pnw
 
 class Proposta {
 
-	static belongsTo = [Licitacao,User]
+	static belongsTo = [licitacao:Licitacao,user:User]
 	Lote lote
 
     static constraints = {

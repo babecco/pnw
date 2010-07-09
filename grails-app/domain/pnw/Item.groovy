@@ -8,5 +8,8 @@ class Item {
 	double preco
 
     static constraints = {
+    	quantidade(min:1)
+    	descricao(blank:false)
+    	preco(min:0)
     }
 }
