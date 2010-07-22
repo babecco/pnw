@@ -68,8 +68,8 @@ class CrudService {
 		return licitacao
 	}
 
-	def createProposta(User user, Lote lote, double lance,boolean primeiraFase) {
-		def proposta = new Proposta(user:user,lote:lote,lance:lance,primeiraFase:primeiraFase)
+	def createProposta(User user, Lote lote, double lance) {
+		def proposta = new Proposta(user:user,lote:lote,lance:lance)
 		if(!proposta.save())
 			log.info "Validation error on proposta - ${proposta}"
 		return proposta
