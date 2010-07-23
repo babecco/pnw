@@ -19,6 +19,9 @@ http://creativecommons.org/licenses/GPL/2.0/
 <link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
 <![endif]-->
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery-latest.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/default.js"></script>
 </head>
 <body id="type-a">
 <div id="wrap">
@@ -90,7 +93,8 @@ http://creativecommons.org/licenses/GPL/2.0/
 			<h1>Cadastro de Licitação</h1>
             <p>Insira as informações necessárias para o cadastro da licitação.</p>
 
-            <form action="/cadastrar/licitacao" method="post" class="f-wrap-1">
+            <!-- o id tem que ser cadastrar-licitacao para a validacao com jquery funcionar -->
+            <form id="form-cadastro-licitacao" action="/cadastrar/licitacao" method="post" class="f-wrap-1">
 			
 			<div class="req"><b>*</b> Indica quais são os campos obrigatórios.</div>
 			
@@ -99,10 +103,10 @@ http://creativecommons.org/licenses/GPL/2.0/
 			<h3>Cadastro de Licitação</h3>
 			
 			<label for="edital"><b><span class="req">*</span>Arquivo do edital:</b>
-			<input id="edital" name="edital" type="file" class="f-name" tabindex="1" /><br /></label>
+			<input id="edital" name="edital" type="file" class="f-name required" tabindex="1" /><br /></label>
 			
             <label for="descricao"><b><span class="req">*</span>Descrição:</b>
-			<textarea id="descricao" name="descricao" class="f-comments" rows="6" cols="20" tabindex="11"></textarea><br />
+			<textarea id="descricao" name="descricao" class="f-comments required" rows="6" cols="20" tabindex="11"></textarea><br />
 			</label>
 			
             <label for="tags"><b>Tags (separados por espaço):</b>
