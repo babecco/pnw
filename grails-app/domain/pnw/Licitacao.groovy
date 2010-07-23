@@ -15,6 +15,7 @@ class Licitacao {
     static constraints = {
     	tags(maxSize: Constants.MAX_TAG_NUMBER)
     	lotes(nullable:true)
+    	propostas(nullable:true)
     	edital(blank:false)
     }
 }

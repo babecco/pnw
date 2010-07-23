@@ -52,7 +52,7 @@ class CrudService {
 		return lote
 	}
 	
-	def createLicitacao(tags, lotes, user, edital, categoria){
+	def createLicitacao(tags, user, edital, categoria){
 		def tagList = []
 		tags.each{ tag ->
 			tag = tag.trim()
@@ -73,6 +73,13 @@ class CrudService {
 		if(!proposta.save())
 			log.info "Validation error on proposta - ${proposta}"
 		return proposta
+	}
+	
+	def createCategoria(String tipo) {
+		def categoria = new Categoria(tipo:tipo)
+		if(!categoria.save())
+			log.info "Validation error on categoria - ${categoria}"
+		return categoria
 	}
 	
 }

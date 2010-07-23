@@ -6,23 +6,20 @@ class LicitacaoController {
 
 	def crudService
 
-    def index = {
-        render(view:"cadastro")
+	def index = {
+		render(view:"cadastro")
+	}
+
+    def index2 = {
+        render(view:"cadastro2")
     }
 
 	def cadastrar = {
 	
 		def tags = [params.tag1, params.tag2, params.tag3]
-		def lotes = []
-		def pre = "lote"
-		def i = 1;
-		while (params[pre + i]){
-			lotes << params[pre + i]
-			i++			
-		}
 		def user = User.findByUsername(params.username)
 		def categoria = Categoria.get(params.categoria)
-		def licitacao = crudService.createLicitacao(tags, lotes, user, params.edital, categoria)
+		def licitacao = crudService.createLicitacao(tags, user, params.edital, categoria)
 	
 		if(licitacao.hasErrors()) {
     		render(view:"cadastro",model:[itemInstance:licitacao])
@@ -30,7 +27,7 @@ class LicitacaoController {
     		flash.message = "Cadastro concluído com sucesso!"
     		render(view:"cadastro",model:[itemInstance:licitacao])
     	}
-	
+		//createLicitacao(tags, user, edital, categoria)
 	}
 
 //    def list = {
