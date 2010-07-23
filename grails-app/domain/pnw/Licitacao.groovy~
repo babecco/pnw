@@ -10,7 +10,6 @@ class Licitacao {
 	static belongsTo = [user:User]
 	String edital
 	Categoria categoria
-	Date fimPrimeiraFase
 	
     static constraints = {
     	tags(maxSize: Constants.MAX_TAG_NUMBER)

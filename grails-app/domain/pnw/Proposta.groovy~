@@ -9,6 +9,6 @@ class Proposta {
 	double lance
 
     static constraints = {
-//			lance(min:(0.0)) - dando problemas :p
+			lance(min:(0.0))
     }
 }

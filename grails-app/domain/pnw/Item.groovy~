@@ -10,6 +10,6 @@ class Item {
     static constraints = {
     	quantidade(min:1)
     	descricao(blank:false)
- //    	precoMinimo(min:(0.0)) dando problemas
+    	precoMinimo(min:(0.0))
     }
 }
