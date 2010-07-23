@@ -10,7 +10,7 @@ class UrlMappings {
 
 		"/" (controller:"pnw.user")
 		"/licitacao" (controller:"pnw.licitacao")
-//		"/"(view:"/index")
+		"/"(view:"/index")
 		"500"(view:'/error')
 	}
 }

@@ -2,19 +2,15 @@ package pnw
 
 class LicitacaoController {
 
-    static allowedMethods = [cadastrar: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [create: "POST", update: "POST", delete: "POST"]
 
 	def crudService
 
 	def index = {
-		render(view:"cadastro")
+		render(view:"create")
 	}
 
-    def index2 = {
-        render(view:"cadastro2")
-    }
-
-	def cadastrar = {
+	def create = {
 	
 		def tags = [params.tag1, params.tag2, params.tag3]
 		def user = User.findByUsername(params.username)

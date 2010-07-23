@@ -2,33 +2,38 @@ package pnw
 
 class UserController {
 
-    static allowedMethods = [cadastrar: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [create: "POST", update: "POST", delete: "POST"]
 
 	def crudService
 
     def index = {
-        render(view:"cadastro")
+        render(view:"create")
     }
     
-    def cadastrar = {
+    def create = {
     	def userType = params.typeCadastro
     	def user
-    	
-    	if(userType == "fisica") {
-    		user = crudService.createPessoaFisica(params.username,params.email,params.cpf,params.name)
-    	} else if (userType == "juridica") {
-    		user = crudService.createPessoaJuridica(params.username,params.email,params.cnpj,params.razaoSocial)
-    	} else {
-    		log.warning "userType unknow!"
-    		redirect(view:"/error")
-    	}
-    	
-    	if(user.hasErrors()) {
-    		render(view:"cadastro",model:[itemInstance:user])
-    	} else {
-    		flash.message = "Cadastro concluído com sucesso!"
-    		render(view:"cadastro",model:[itemInstance:user])
-    	}
+    	if(params.password == params.confirm){
+			if(userType == "fisica") {
+				user = crudService.createPessoaFisica(params.username,params.password, params.email,params.cpf,params.name)
+			} else if (userType == "juridica") {
+				user = crudService.createPessoaJuridica(params.username,params.senha,params.email,params.cnpj,params.razaoSocial)
+			} else {
+				log.warning "userType unknow!"
+				redirect(view:"/error")
+			}
+				
+			if(user.hasErrors()) {
+				render(view:"create",model:[itemInstance:user])
+			} else {
+				flash.message = "Cadastro concluído com sucesso!"
+				render(view:"create",model:[itemInstance:user])
+			}
+			
+		}else{
+			flash.message = "Preencha a mesma senha nos dois campos."
+			render(view:"create",model:[itemInstance:user])
+		}
     }
 
 //    def list = {
