@@ -4,7 +4,7 @@ class Licitacao {
 
 	//propriedades automaticamente gerenciadas pelo hibernate
 	Date dateCreated
-	Date lastModified
+	Date lastUpdated
 
 	static hasMany = [tags:String,propostas:Proposta,lotes:Lote]
 	static belongsTo = [user:User]

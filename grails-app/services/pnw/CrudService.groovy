@@ -52,7 +52,7 @@ class CrudService {
 		return lote
 	}
 	
-	def createLicitacao(tags, user, edital, categoria){
+	def createLicitacao(tags, user, edital, categoria, fimPrimeiraFase){
 		def tagList = []
 		tags.each{ tag ->
 			tag = tag.trim()
@@ -61,7 +61,7 @@ class CrudService {
 			}
 		}
 		
-		def licitacao = new Licitacao(tags:(tags as Set), user:user, edital:edital, categoria:categoria)
+		def licitacao = new Licitacao(tags:(tags as Set), user:user, edital:edital, categoria:categoria, fimPrimeiraFase:fimPrimeiraFase)
 		if(!licitacao.save()){
 			log.info "Validation error on licitação - ${licitacao}"
 		}

@@ -30,54 +30,36 @@ http://creativecommons.org/licenses/GPL/2.0/
 <div id="wrap">
 
 	<div id="header">
-		<div id="site-name">PNW - Licitações</div>
-		<div id="search">
+		<div id="site-name">PNW - Cadastro de Licitações</div>
+		<!--<div id="search">
 			<form action="">
 			<label for="searchsite">Site Search:</label>
 			<input id="searchsite" name="searchsite" type="text" />
 			<input type="submit" value="Go" class="f-submit" />
 			</form>
-		</div>
+		</div>-->
 		<ul id="nav">
-		<li class="first"><a href="#">Home</a></li>
+		<li class="first"><a href="/pnw/">Home</a></li>
 		<li class="active"><a href="#">Licitações</a>
 			<ul>
-			<li class="first"><a href="#">Listar</a></li>
-			<li class="active"><a href="#">Cadastrar</a></li>
-			<li><a href="#">Categorias</a></li>
-			<li class="last"><a href="#">Últimas do Sistema</a></li>
+			<li class="first"><a href="/pnw/licitacao/list/">Listar</a></li>
+			<li class="active"><a href="/pnw/licitacao/create/">Cadastrar</a></li>
+			<li><a href="/pnw/licitacao/listaPorCategoria/">Categorias</a></li>
+			<li class="last"><a href="/pnw/licitacao/last/">Últimas do Sistema</a></li>
 			</ul>
 		</li>
-		<li><a href="#">Client list</a>
+		<li><a href="#">Comunidade</a>
 			<ul>
-			<li class="first"><a href="#">Maecenas</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li class="last"><a href="#">Mauris at enim</a></li>
+			<li class="first"><a href="#">Usuários</a></li>
+			<li><a href="#">Regiões</a></li>
+			<li class="last"><a href="#">Estatísticas</a></li>
 			</ul>
 		</li>
-		<li><a href="#">Case Studies &amp; References</a>
+		<li class="last"><a href="#">Sobre</a>
 			<ul>
-			<li class="first"><a href="#">Maecenas</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li class="last"><a href="#">Mauris at enim</a></li>
-			</ul>
-		</li>
-		<li class="last"><a href="#">Locations</a>
-			<ul>
-			<li class="first"><a href="#">Maecenas</a></li>
-			<li><a href="#">Phasellus</a></li>
-			<li><a href="#">Mauris sollicitudin</a></li>
-			<li class="last"><a href="#">Mauris at enim</a></li>
+			<li class="first"><a href="#">Equipe</a></li>
+			<li><a href="#">Documentação</a></li>
+			<li class="last"><a href="#">Disciplina</a></li>
 			</ul>
 		</li>
 		</ul>
@@ -88,14 +70,29 @@ http://creativecommons.org/licenses/GPL/2.0/
 		<div id="content">
 		
 			<div id="breadcrumb">
-			<a href="#">Home</a> / <a href="devtodo">Section Name</a> / <strong>Page Name</strong>
+			<a href="/pnw/">Home</a> / <a href="/pnw/licitacao/">Licitação</a> / <strong>Cadastro</strong>
 			</div>
 			
 			<h1>Cadastro de Licitação</h1>
+			
+			<div id="message">
+				<g:if test="${flash.message}">
+					<div class="message">${flash.message}</div>
+				</g:if>
+			</div>	
+					
+			<div id="errorMessage">
+			<g:hasErrors bean="${itemInstance}">
+				    <div class="errors">
+				        <g:renderErrors bean="${itemInstance}" as="list" />
+				    </div>
+				    </g:hasErrors>
+			</div>
+			
             <p>Insira as informações necessárias para o cadastro da licitação.</p>
 
             <!-- o id tem que ser cadastrar-licitacao para a validacao com jquery funcionar -->
-            <g:form name="form-cadastro-licitacao" action="cadastrar" enctype="multipart/form-data" class="f-wrap-1">
+            <g:form name="form-cadastro-licitacao" action="create" enctype="multipart/form-data" class="f-wrap-1">
 			
 			<div class="req"><b>*</b> Indica quais são os campos obrigatórios.</div>
 			
@@ -107,11 +104,9 @@ http://creativecommons.org/licenses/GPL/2.0/
 			<!--<input id="edital" name="edital" type="file" class="f-name required" tabindex="1" /><br /></label>-->
 			<input id="edital" name="edital" type="text" class="f-name required" tabindex="1" /><br /></label>		
 			
-			<label for="username"><b><span class="req">*</span>Nome do usuário-dono:</b>
-			<input id="username" name="username" type="text" class="f-name required" tabindex="2" /><br /></label>			
-            <label for="descricao"><b><span class="req">*</span>Descrição:</b>
-			<textarea id="descricao" name="descricao" class="f-comments required" rows="6" cols="20" tabindex="15"></textarea><br />
-			</label>
+			<label for="fim da primeira fase"><b>Data final para envio de propostas:</b>
+			<g:datePicker id="fimPrimeiraFase" name="fimPrimeiraFase" value="${new Date()}" precision="hour" years="${2010..2020}" class="f-name required" tabindex="2"/>
+			</label>	
 			
             <label for="tag 1"><b>Tag 1:</b>
 			<input id="tag1" name="tag1" type="text" class="f-name" tabindex="3" /><br />
@@ -126,11 +121,21 @@ http://creativecommons.org/licenses/GPL/2.0/
 			</label>
 			
 			<label for="categoria"><b>Categoria:</b>
-			<input id="categoria" name="categoria" type="text" class="f-name" tabindex="6" /><br />
+			<select name="categoria" class="f-name" tabindex="6">
+				<g:each in="${Categoria.list()}">
+				<option value="${it.id}">${it.tipo}</option>
+				</g:each>
+			</select>
+			
+			 <label for="descricao"><b><span class="req">*</span>Descrição:</b>
+			<textarea id="descricao" name="descricao" class="f-comments required" rows="6" cols="20" tabindex="16"></textarea><br />
+			</label>
+			
+			
 			</label>
 			
 			<div class="f-submit-wrap">
-			<input type="submit" value="Submit" class="f-submit" tabindex="16" /><br />
+			<input type="submit" value="Submit" class="f-submit" tabindex="17" /><br />
 			</div>
 			</fieldset>
 			</g:form>
